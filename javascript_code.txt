@@ -1,0 +1,60 @@
+  function doGet(e){
+  Logger.log("--- doGet ---");
+
+ var tag = "",
+     Value = "";
+  
+  try {
+    
+    // this helps during debugging
+    if (e == null){e={}; e.parameters = {tag:"test",Value:"-1"};}
+    
+    tag = e.parameters.tag;
+    Value = e.parameters.Value;
+    
+    // save the data to spreadsheet
+    save_data(tag, Value);
+    
+    
+    return ContentService.createTextOutput("Wrote:\n  tag: " + tag + "\n  Value: " + Value);
+    
+  } catch(error) { 
+    Logger.log(error);    
+    return ContentService.createTextOutput("oops...." + error.message  
+                                            + "\ntag: " + tag
+                                            + "\nValue: " + Value);
+  }  
+}
+
+// Method to save given data to a sheet
+function save_data(tag, Value){
+  Logger.log("--- save_data ---"); 
+ 
+  try {
+    //var dateTime = new Date();
+    
+    // Paste the URL of the Google Sheets starting from https thru /edit
+    // For e.g.: https://docs.google.com/..../edit 
+    var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/12RCxZo_XW5citKXHGaIWRTgJGPnee17K9DmBI2NlhT0/edit");
+    var dataLoggerSheet = ss.getSheetByName("5C");
+    
+    
+    // Start Populating the data
+    if (tag == "CH-01-AY-7854"){
+      dataLoggerSheet.getRange("A2").setValue(Value); // Value
+    }
+    else if (tag == "CH-04-AG-8512"){
+      dataLoggerSheet.getRange("B2").setValue(Value); // Value
+    }
+    else if (tag == "CH-02-BG-5678"){
+      dataLoggerSheet.getRange("C2").setValue(Value); // Value
+    }        
+
+  }
+  
+  catch(error) {
+    Logger.log(JSON.stringify(error));
+  }
+  
+  Logger.log("--- save_data end---"); 
+}
