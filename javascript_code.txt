@@ -35,7 +35,8 @@ function save_data(tag, Value){
     
     // Paste the URL of the Google Sheets starting from https thru /edit
     // For e.g.: https://docs.google.com/..../edit 
-    var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/12RCxZo_XW5citKXHGaIWRTgJGPnee17K9DmBI2NlhT0/edit");
+    //var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/12RCxZo_XW5citKXHGaIWRTgJGPnee17K9DmBI2NlhT0/edit");  //Bus On Time Sheet
+    var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/17SvbLm8hMzeknDUT0BChdnpUK7JxJJea6E06dGONLTQ/edit"); //Check Bus On Time Sheet
     var dataLoggerSheet = ss.getSheetByName("5C");
     
     
